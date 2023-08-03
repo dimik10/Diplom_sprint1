@@ -1,0 +1,45 @@
+---
+
+- name: Install a list of packages
+  ansible.builtin.apt:
+    pkg:
+    - curl
+    - ca-certificates
+    - lsb-release
+    - tzdata
+    - docker
+    - docker-compose
+    - git
+    - python3-pip
+    update_cache: yes
+#    ignore_errors: yes 
+
+- name: "Git clone"
+  ansible.builtin.git:
+    repo: 'https://github.com/kubernetes-sigs/kubespray.git'
+    dest: /home/ubuntu/kuberspray
+
+- name: "change mod dir"
+  ansible.builtin.file:
+    path: /home/ubuntu/kuberspray
+    owner: ubuntu
+    group: ubuntu
+    state: directory
+    recurse: true
+
+
+- name: "Run install requirements.txt"
+  ansible.builtin.shell: pip install -r /home/ubuntu/kuberspray/requirements.txt
+#    - gitlab-runner
+
+# Ставим docker, docker compose
+#curl -fsSL https://get.docker.com | sh
+#usermod -aG docker $USER
+#apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+#systemctl enable docker.service && systemctl enable containerd.service && systemctl start docker.service && sudo systemctl start containerd.service
+
+# Ставим jq, pip и ansible
+#add-apt-repository ppa:deadsnakes/ppa -y
+#apt install python3-pip -y
+#apt-get install jq ansible -y
+
