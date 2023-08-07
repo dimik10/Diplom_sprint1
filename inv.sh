@@ -11,7 +11,7 @@ printf "[all]\n"
 for num in 1 
 do
 printf "k8s-master-$num   ansible_host=$w1"
-printf "   ip= $w2"
+printf "   ip=$w2"
 printf "   etcd_member_name=etcd-$num\n"
 done
 
@@ -24,8 +24,8 @@ done
 
 printf "\n[all:vars]\n"
 printf "ansible_user=ubuntu\n"
-printf "supplementary_addresses_in_ssl_keys='$w1 $w2"
-printf "'\n\n"
+printf "supplementary_addresses_in_ssl_keys=$w1"
+printf "\n\n"
 
 cat << EOF
 [kube-master]
@@ -43,6 +43,6 @@ k8s-master-1
 [kube-ingress]
 
 [k8s-cluster:children]
-k8s-master-1
-k8s-app-1
+kube-master
+kube-node
 EOF

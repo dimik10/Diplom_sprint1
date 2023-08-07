@@ -31,7 +31,7 @@ resource "yandex_vpc_subnet" "subnet_kuber" {
 
 module "k8s_cluster" {
   source                = "./modules"
-  instance_family_image = "ubuntu-2204-lts"
+  instance_family_image = "ubuntu-2004-lts"
   vpc_subnet_id         = yandex_vpc_subnet.subnet_kuber.id
 #  managers      = 1
 #  workers       = 2

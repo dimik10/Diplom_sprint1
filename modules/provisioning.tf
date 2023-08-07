@@ -59,6 +59,13 @@ resource "null_resource" "k8s-srv" {
     source      = "inventory.ini"
     destination = "kuberspray/inventory/mycluster/inventory.ini"
   }
+# запуск установки кластера k8s
+  provisioner "remote-exec" {
+    inline = [
+    "cd kuberspray/",
+    "ansible-playbook -i inventory/mycluster/inventory.ini --become -u ubuntu --private-key /home/ubuntu/.ssh/id_rsa cluster.yml",
+    ]
+  }
 }
 
 #resource "null_resource" "docker-swarm-manager-join" {

@@ -1,7 +1,7 @@
 variable "instance_family_image" {
   description = "Instance image"
   type        = string
-  default     = "ubuntu-2204-lts"
+  default     = "ubuntu-2004-lts"
   #  default     = "lamp"
 }
 
