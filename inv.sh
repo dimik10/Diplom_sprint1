@@ -24,7 +24,7 @@ done
 
 printf "\n[all:vars]\n"
 printf "ansible_user=ubuntu\n"
-printf "supplementary_addresses_in_ssl_keys=$w1"
+printf "supplementary_addresses_in_ssl_keys=['$w1']"
 printf "\n\n"
 
 cat << EOF
